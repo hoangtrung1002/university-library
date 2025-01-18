@@ -8,6 +8,13 @@
       "when": 1736873308839,
       "tag": "0000_regular_celestials",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1737198611604,
+      "tag": "0001_tranquil_king_bedlam",
+      "breakpoints": true
     }
   ]
 }

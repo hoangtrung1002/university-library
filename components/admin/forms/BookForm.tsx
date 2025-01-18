@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/FileUpload";
 import ColorPicker from "@/components/admin/ColorPicker";
 import React from "react";
+import { createBook } from "@/lib/actions/admin";
+import { toast } from "@/hooks/use-toast";
 
 interface Props extends Partial<Book> {
   type: "create" | "update";
@@ -44,7 +46,20 @@ const BookForm = ({ type, ...book }: Props) => {
   // const coverUrl = form.watch("coverUrl");
 
   const onSubmit = async (values: z.infer<typeof bookSchema>) => {
-    console.log(values);
+    const result = await createBook(values);
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: "Book created successfully.",
+      });
+      router.push(`/admin/books/${result.data.id}`);
+    } else {
+      toast({
+        title: "Error",
+        description: result.message,
+        variant: "destructive",
+      });
+    }
   };
   return (
     <Form {...form}>
